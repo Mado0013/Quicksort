@@ -3,22 +3,15 @@ def partition(array, low, high)
   dividing_index = low
 
   (low...high).each do |index|
-    value = array[index]
-    puts "value: #{value}, pivot: #{pivot}, dividing_index: #{dividing_index} index: #{index}"
-    puts value <= pivot
-    puts "array: #{array}"
+    
     if value <= pivot
       # Swap the value into the "low" partition, and increment the dividing_index
-      array[index] = array[dividing_index]
-      array[dividing_index] = value
-      dividing_index += 1
+      
     end
   end
 
   # Swap the lowest "high" value with the pivot
-  array[high] = array[dividing_index]
-  array[dividing_index] = pivot
-  dividing_index
+  
 end
 
 def quick_sort_in_place(array, low = 0, high = array.length - 1)
@@ -30,8 +23,9 @@ def quick_sort_in_place(array, low = 0, high = array.length - 1)
   array
 end
 
-unsorted_array = [5, 3, 1, 4, 2]
+unsorted_array = (1..1000000).to_a.shuffle
+time1 = Time.now
+sorted = quick_sort_in_place(unsorted_array.dup)
 time2 = Time.now
-sorted2 = quick_sort_in_place(unsorted_array.dup)
-time3 = Time.now
-puts "QUICK_SORT_IN_PLACE SORTED CORRECTLY: #{sorted2 == unsorted_array.sort}\n#{time3 - time2}sec\n\n"#"\n\n#{unsorted_array}\n\n#{sorted2}"
+puts "QUICK_SORT_IN_PLACE SORTED CORRECTLY: #{sorted2 == unsorted_array.sort}\n#{time2 - time1}sec\n\n"#"\n\n#{unsorted_array}\n\n#{sorted2}"
+
